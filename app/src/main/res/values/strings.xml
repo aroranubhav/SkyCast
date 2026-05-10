@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">SkyCast</string>
+    <string name="skycast">SkyCast</string>
+    <string name="widget_description">SkyCast weather widget</string>
 </resources>
