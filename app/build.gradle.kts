@@ -112,4 +112,7 @@ dependencies {
 
     // WorkManager
     implementation(libs.work.runtime.ktx)
+
+    // Glance
+    implementation(libs.bundles.glance)
 }
