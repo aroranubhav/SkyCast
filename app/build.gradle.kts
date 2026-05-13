@@ -95,4 +95,7 @@ dependencies {
     implementation(libs.work.runtime.ktx)
 
     implementation(libs.kotlin.metadata.jvm)
+
+    // Glance
+    implementation(libs.bundles.glance)
 }
