@@ -1,4 +1,4 @@
-package com.maxi.skycast.framework.di.module
+package com.maxi.skycast.data.di.module
 
 import com.maxi.skycast.data.repository.DefaultWeatherRepository
 import com.maxi.skycast.domain.repository.WeatherRepository

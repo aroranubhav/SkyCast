@@ -1,4 +1,4 @@
-package com.maxi.skycast.framework.di.module
+package com.maxi.skycast.data.di.module
 
 import android.content.Context
 import androidx.room.Room

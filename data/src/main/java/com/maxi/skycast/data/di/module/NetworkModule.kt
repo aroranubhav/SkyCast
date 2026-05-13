@@ -1,13 +1,12 @@
-package com.maxi.skycast.framework.di.module
+package com.maxi.skycast.data.di.module
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
-import com.maxi.skycast.BuildConfig
 import com.maxi.skycast.data.remote.api.NetworkApiService
 import com.maxi.skycast.data.remote.interceptor.AuthorizationInterceptor
 import com.maxi.skycast.data.remote.interceptor.HttpLoggingInterceptorFactory
-import com.maxi.skycast.framework.di.qualifier.ApiKey
-import com.maxi.skycast.framework.di.qualifier.BaseUrl
-import com.maxi.skycast.framework.di.qualifier.IsDebug
+import com.maxi.skycast.data.di.qualifier.ApiKey
+import com.maxi.skycast.data.di.qualifier.BaseUrl
+import com.maxi.skycast.data.di.qualifier.IsDebug
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -27,16 +26,6 @@ object NetworkModule {
     @BaseUrl
     fun provideBaseUrl(): String =
         "https://api.openweathermap.org/"
-
-    @Provides
-    @ApiKey
-    fun provideApiKey(): String =
-        BuildConfig.API_KEY
-
-    @Provides
-    @IsDebug
-    fun provideIsDebug(): Boolean =
-        BuildConfig.DEBUG
 
     @Provides
     @Singleton
@@ -99,5 +88,4 @@ object NetworkModule {
         retrofit: Retrofit
     ): NetworkApiService =
         retrofit.create(NetworkApiService::class.java)
-
 }

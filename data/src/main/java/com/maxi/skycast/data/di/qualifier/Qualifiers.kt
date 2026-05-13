@@ -1,4 +1,4 @@
-package com.maxi.skycast.framework.di.qualifier
+package com.maxi.skycast.data.di.qualifier
 
 import javax.inject.Qualifier
 

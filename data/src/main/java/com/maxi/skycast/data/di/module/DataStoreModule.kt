@@ -1,11 +1,13 @@
-package com.maxi.skycast.framework.di.module
+package com.maxi.skycast.data.di.module
 
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStoreFile
-import com.maxi.skycast.data.local.datastore.AppPreferencesDataStore
+import com.maxi.skycast.data.local.datastore.DefaultAppPreferencesDataStore
+import com.maxi.skycast.domain.repository.AppPreferencesDataStore
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -33,11 +35,15 @@ object DataStoreModule {
                 context.preferencesDataStoreFile(APP_PREFERENCES_FILE)
             }
         )
+}
 
-    @Provides
+@Module
+@InstallIn(SingletonComponent::class)
+abstract class DataStoreBindingsModule {
+
+    @Binds
     @Singleton
-    fun provideAppPreferencesDataStore(
-        dataStore: DataStore<Preferences>
-    ): AppPreferencesDataStore =
-        AppPreferencesDataStore(dataStore)
+    abstract fun bindAppPreferences(
+        impl: DefaultAppPreferencesDataStore
+    ): AppPreferencesDataStore
 }
