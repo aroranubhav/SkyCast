@@ -38,7 +38,7 @@
         </provider>
 
         <receiver
-            android:name=".presentation.widget.SkyCastWidgetReceiver"
+            android:name=".widget.SkyCastWidgetReceiver"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />

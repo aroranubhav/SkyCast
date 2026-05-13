@@ -1,4 +1,4 @@
-package com.maxi.skycast.presentation.widget
+package com.maxi.skycast.widget
 
 import com.maxi.skycast.data.local.dao.CityDao
 import com.maxi.skycast.domain.repository.AppPreferencesDataStore

@@ -1,4 +1,4 @@
-package com.maxi.skycast.presentation.widget
+package com.maxi.skycast.widget
 
 import android.content.Context
 import androidx.glance.appwidget.updateAll
