@@ -8,21 +8,22 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.stringPreferencesKey
 import com.maxi.skycast.domain.model.TemperatureUnit
+import com.maxi.skycast.domain.repository.AppPreferencesDataStore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-class AppPreferencesDataStore @Inject constructor(
+class DefaultAppPreferencesDataStore @Inject constructor(
     private val dataStore: DataStore<Preferences>
-) {
+): AppPreferencesDataStore {
 
     companion object {
         private val TEMPERATURE_UNIT_KEY = stringPreferencesKey("temperature_unit")
         private val SYNC_FAILED_KEY = booleanPreferencesKey("sync_failed")
     }
 
-    val temperatureUnit: Flow<TemperatureUnit> = dataStore.data
+    override val temperatureUnit: Flow<TemperatureUnit> = dataStore.data
         .catch { exception ->
             if (exception is IOException) emit(emptyPreferences())
             else throw exception
@@ -31,13 +32,13 @@ class AppPreferencesDataStore @Inject constructor(
             TemperatureUnit.valueOf(unit)
         }
 
-    suspend fun saveTemperatureUnit(unit: TemperatureUnit) {
+    override suspend fun saveTemperatureUnit(unit: TemperatureUnit) {
         dataStore.edit { preferences ->
             preferences[TEMPERATURE_UNIT_KEY] = unit.name
         }
     }
 
-    val syncFailed: Flow<Boolean> = dataStore.data
+    override val syncFailed: Flow<Boolean> = dataStore.data
         .catch { exception ->
             if (exception is IOException) emit(emptyPreferences())
             else throw exception
@@ -45,7 +46,7 @@ class AppPreferencesDataStore @Inject constructor(
             preferences[SYNC_FAILED_KEY] ?: false
         }
 
-    suspend fun saveSyncFailed(status: Boolean) {
+    override suspend fun saveSyncFailed(status: Boolean) {
         dataStore.edit { preferences ->
             preferences[SYNC_FAILED_KEY] = status
         }

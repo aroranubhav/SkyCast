@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
-import com.maxi.skycast.data.local.datastore.AppPreferencesDataStore
+import com.maxi.skycast.data.local.datastore.DefaultAppPreferencesDataStore
 import com.maxi.skycast.domain.repository.WeatherRepository
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
@@ -14,7 +14,7 @@ class WeatherSyncWorker @AssistedInject constructor(
     @Assisted context: Context,
     @Assisted workerParams: WorkerParameters,
     private val repository: WeatherRepository,
-    private val appPreferencesDataStore: AppPreferencesDataStore
+    private val appPreferencesDataStore: DefaultAppPreferencesDataStore
 ) : CoroutineWorker(context, workerParams) {
 
     companion object {
