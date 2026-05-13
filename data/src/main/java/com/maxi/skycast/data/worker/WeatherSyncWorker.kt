@@ -1,13 +1,12 @@
 package com.maxi.skycast.data.worker
 
 import android.content.Context
-import androidx.glance.appwidget.updateAll
 import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.maxi.skycast.data.local.datastore.DefaultAppPreferencesDataStore
 import com.maxi.skycast.domain.repository.WeatherRepository
-import com.maxi.skycast.presentation.widget.SkyCastWidget
+import com.maxi.skycast.domain.util.WidgetUpdater
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 
@@ -16,7 +15,8 @@ class WeatherSyncWorker @AssistedInject constructor(
     @Assisted private val context: Context,
     @Assisted workerParams: WorkerParameters,
     private val repository: WeatherRepository,
-    private val appPreferencesDataStore: DefaultAppPreferencesDataStore
+    private val appPreferencesDataStore: DefaultAppPreferencesDataStore,
+    private val widgetUpdater: WidgetUpdater
 ) : CoroutineWorker(context, workerParams) {
 
     companion object {
@@ -29,7 +29,7 @@ class WeatherSyncWorker @AssistedInject constructor(
             .fold(
                 onSuccess = {
                     appPreferencesDataStore.saveSyncFailed(false)
-                    SkyCastWidget().updateAll(context = context)
+                    widgetUpdater.update(context)
                     Result.success()
                 },
                 onFailure = {
