@@ -1,6 +1,5 @@
-package com.maxi.skycast.ui.theme
+package com.maxi.skycast.presentation.ui.theme
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme

@@ -1,4 +1,4 @@
-package com.maxi.skycast.ui.theme
+package com.maxi.skycast.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
