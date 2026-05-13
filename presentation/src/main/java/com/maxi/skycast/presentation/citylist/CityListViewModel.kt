@@ -2,8 +2,8 @@ package com.maxi.skycast.presentation.citylist
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.maxi.skycast.data.local.datastore.AppPreferencesDataStore
 import com.maxi.skycast.domain.model.TemperatureUnit
+import com.maxi.skycast.domain.repository.AppPreferencesDataStore
 import com.maxi.skycast.domain.usecase.DeleteCityUseCase
 import com.maxi.skycast.domain.usecase.GetSavedCitiesUseCase
 import com.maxi.skycast.domain.usecase.RefreshAllCitiesWeatherUseCase
