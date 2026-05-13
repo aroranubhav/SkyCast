@@ -10,6 +10,16 @@ plugins {
     alias(libs.plugins.room)
 }
 
+val localProperties = Properties().apply {
+    rootProject.file("local.properties")
+        .takeIf {
+            it.exists()
+        }?.inputStream()
+        .use {
+            load(it)
+        }
+}
+
 android {
     namespace = "com.maxi.skycast"
     compileSdk = 36
@@ -23,17 +33,6 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
-
-    val localProperties = Properties()
-        .apply {
-            rootProject.file("local.properties")
-                .takeIf {
-                    it.exists()
-                }?.inputStream()
-                .use {
-                    load(it)
-                }
-        }
 
     buildTypes {
         all {
@@ -61,55 +60,40 @@ android {
         }
     }
 
-    kotlin {
-        jvmToolchain(11)
-    }
-
     buildFeatures {
-        compose = true
         buildConfig = true
     }
 }
 
-room {
-    schemaDirectory("$projectDir/schemas")
+kotlin {
+    jvmToolchain(11)
 }
 
 dependencies {
+    implementation(project(":domain"))
+    implementation(project(":data"))
+    implementation(project(":presentation"))
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.activity.compose)
 
     // Compose
     implementation(platform(libs.compose.bom))
-    implementation(libs.bundles.compose)
+    implementation(libs.compose.ui)
+    implementation(libs.compose.material3)
 
-    // Lifecycle
-    implementation(libs.bundles.lifecycle)
-
-    //coroutines
-    implementation(libs.bundles.coroutines)
+    // Hilt
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.compiler)
+    implementation(libs.hilt.work)
+    ksp(libs.hilt.compiler.androidx)
+    ksp(libs.kotlin.metadata.jvm)
 
     // Navigation
     implementation(libs.navigation.compose)
 
-    // Hilt
-    implementation(libs.hilt.android)
-    implementation(libs.hilt.navigation.compose)
-    ksp(libs.hilt.compiler)
-    ksp(libs.hilt.compiler.androidx)
-    ksp(libs.kotlin.metadata.jvm)
-    implementation(libs.hilt.work)
-
-    // Networking
-    implementation(libs.bundles.networking)
-
-    // Room
-    implementation(libs.bundles.room)
-    ksp(libs.room.compiler)
-
-    // Datastore
-    implementation(libs.datastore.preferences)
-
     // WorkManager
     implementation(libs.work.runtime.ktx)
+
+    implementation(libs.kotlin.metadata.jvm)
 }
