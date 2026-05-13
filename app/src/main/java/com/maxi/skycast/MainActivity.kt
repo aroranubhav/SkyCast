@@ -6,7 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.navigation.compose.rememberNavController
 import com.maxi.skycast.data.worker.WeatherSyncScheduler
 import com.maxi.skycast.presentation.navigation.NavGraph
-import com.maxi.skycast.ui.theme.SkyCastTheme
+import com.maxi.skycast.presentation.ui.theme.SkyCastTheme
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

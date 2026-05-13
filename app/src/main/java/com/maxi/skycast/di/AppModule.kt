@@ -4,7 +4,7 @@ import com.maxi.skycast.BuildConfig
 import com.maxi.skycast.data.di.qualifier.ApiKey
 import com.maxi.skycast.data.di.qualifier.IsDebug
 import com.maxi.skycast.domain.util.WidgetUpdater
-import com.maxi.skycast.presentation.widget.SkyCastWidgetUpdater
+import com.maxi.skycast.widget.SkyCastWidgetUpdater
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
