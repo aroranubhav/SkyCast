@@ -11,14 +11,21 @@ dependencies {
 
 gradlePlugin {
     plugins {
+        register("androidApplication") {
+            id = "skycast.android.application"
+            implementationClass = "AndroidApplicationConventionPlugin"
+        }
+
         register("androidLibrary") {
             id = "skycast.android.library"
             implementationClass = "AndroidLibraryConventionPlugin"
         }
-        register("androidLibraryCompose") {
-            id = "skycast.android.library.compose"
-            implementationClass = "AndroidLibraryComposeConventionPlugin"
+
+        register("androidCompose") {
+            id = "skycast.android.compose"
+            implementationClass = "AndroidComposeConventionPlugin"
         }
+
         register("androidHilt") {
             id = "skycast.android.hilt"
             implementationClass = "AndroidHiltConventionPlugin"
