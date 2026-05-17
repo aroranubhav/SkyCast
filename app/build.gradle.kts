@@ -1,12 +1,9 @@
 import java.util.Properties
 
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.compose)
-    alias(libs.plugins.ksp)
-    alias(libs.plugins.hilt)
-    alias(libs.plugins.kotlin.serialization)
+    id("skycast.android.application")
+    id("skycast.android.compose")
+    id("skycast.android.hilt")
 }
 
 val localProperties = Properties().apply {
@@ -21,12 +18,9 @@ val localProperties = Properties().apply {
 
 android {
     namespace = "com.maxi.skycast"
-    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.maxi.skycast"
-        minSdk = 26
-        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
 
@@ -62,10 +56,6 @@ android {
     buildFeatures {
         buildConfig = true
     }
-}
-
-kotlin {
-    jvmToolchain(11)
 }
 
 dependencies {
