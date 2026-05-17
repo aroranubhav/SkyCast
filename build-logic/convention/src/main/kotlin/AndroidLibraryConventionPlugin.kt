@@ -1,3 +1,6 @@
+import BuildConstants.COMPILE_SDK
+import BuildConstants.JVM_TOOLCHAIN
+import BuildConstants.MIN_SDK
 import com.android.build.gradle.LibraryExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -8,18 +11,21 @@ class AndroidLibraryConventionPlugin: Plugin<Project> {
 
     override fun apply(target: Project) {
         with(target) {
+
             with(pluginManager) {
-                apply("com.android.library")
-                apply("org.jetbrains.kotlin.android")
+                apply(catalogLibs.findPlugin("android.library").get().get().pluginId)
+                apply(catalogLibs.findPlugin("kotlin.android").get().get().pluginId)
             }
+
             extensions.configure<LibraryExtension> {
-                compileSdk = 36
+                compileSdk = COMPILE_SDK
                 defaultConfig {
-                    minSdk = 26
+                    minSdk = MIN_SDK
                 }
             }
+
             extensions.configure<KotlinAndroidProjectExtension> {
-                jvmToolchain(11)
+                jvmToolchain(JVM_TOOLCHAIN)
             }
         }
     }
