@@ -1,8 +1,6 @@
-import org.gradle.kotlin.dsl.libs
-
 plugins {
     id("skycast.android.library")
-    id("skycast.android.library.compose")
+    id("skycast.android.compose")
     id("skycast.android.hilt")
 }
 
@@ -27,6 +25,6 @@ dependencies {
 
     implementation(libs.hilt.work)
 
-    /*implementation(libs.glance.appwidget)
-    implementation(libs.glance.material3)*/
+    // Glance
+    implementation(libs.bundles.glance)
 }

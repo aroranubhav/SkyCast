@@ -1,5 +1,3 @@
-import org.gradle.kotlin.dsl.libs
-
 plugins {
     id("skycast.android.library")
     id("skycast.android.hilt")
